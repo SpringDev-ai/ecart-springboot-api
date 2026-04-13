@@ -55,7 +55,7 @@ public class UserController {
 		return new ResponseEntity<>(structure,HttpStatus.OK);
 	}
 	
-	@PutMapping("updateUser")
+	@PutMapping("/updateUser")
 	public ResponseEntity<?> updateStudent(@RequestBody User u) {
 		ResponseStructure<UserResponseDto> structure = userService.updateUserService(u);
 		return new ResponseEntity<>(structure, HttpStatus.OK);

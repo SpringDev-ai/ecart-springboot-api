@@ -16,30 +16,32 @@ import com.springboot.user_app.response.ResponseStructure;
 public class UserExceptionController {
 
 	@ExceptionHandler(value = IdNotFoundException.class)
-	public ResponseEntity<?> idNotFound(IdNotFoundException e){
-		ResponseStructure<IdNotFoundException> structure =new ResponseStructure<>();
-		structure.setData(e);
-		structure.setMessage(e.getMessage());
+	public ResponseEntity<?> idNotFound(IdNotFoundException e) {
+		ResponseStructure<String> structure = new ResponseStructure<>();
+		structure.setData(e.getMessage());
+		structure.setMessage("ID Not Found");
 		structure.setTime(LocalDateTime.now());
-		structure.setHttpStatusCode(500);
-		return new ResponseEntity<>(structure,HttpStatus.INTERNAL_SERVER_ERROR);
+		structure.setHttpStatusCode(404);
+		return new ResponseEntity<>(structure, HttpStatus.NOT_FOUND);
 	}
+
 	@ExceptionHandler(value = EmailNotFoundException.class)
-	public ResponseEntity<?> emailNotFound(EmailNotFoundException e){
-		ResponseStructure<EmailNotFoundException> structure =new ResponseStructure<>();
-		structure.setData(e);
-		structure.setMessage(e.getMessage());
+	public ResponseEntity<?> emailNotFound(EmailNotFoundException e) {
+		ResponseStructure<String> structure = new ResponseStructure<>();
+		structure.setData(e.getMessage());
+		structure.setMessage("Email Not Found");
 		structure.setTime(LocalDateTime.now());
-		structure.setHttpStatusCode(500);
-		return new ResponseEntity<>(structure,HttpStatus.INTERNAL_SERVER_ERROR);
+		structure.setHttpStatusCode(404);
+		return new ResponseEntity<>(structure, HttpStatus.NOT_FOUND);
 	}
+
 	@ExceptionHandler(value = IncorrectPasswordException.class)
-	public ResponseEntity<?> incorrectpassword(IncorrectPasswordException e){
-		ResponseStructure<IncorrectPasswordException> structure =new ResponseStructure<>();
-		structure.setData(e);
-		structure.setMessage(e.getMessage());
+	public ResponseEntity<?> incorrectpassword(IncorrectPasswordException e) {
+		ResponseStructure<String> structure = new ResponseStructure<>();
+		structure.setData(e.getMessage());
+		structure.setMessage("Incorrect Password");
 		structure.setTime(LocalDateTime.now());
-		structure.setHttpStatusCode(500);
-		return new ResponseEntity<>(structure,HttpStatus.INTERNAL_SERVER_ERROR);
+		structure.setHttpStatusCode(401);
+		return new ResponseEntity<>(structure, HttpStatus.UNAUTHORIZED);
 	}
 }

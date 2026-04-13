@@ -25,9 +25,9 @@ public class UserAppApplication {
 	 public OpenAPI getOpenApiBean() {
 		 return new OpenAPI()
 				 .info(new Info()
-						 .title("User management API")
-						 .version("1.0.0")
-						 .description("This API is used to manage UserOperation like create, update, find, delete")
+						 .title("E-Cart Application API")
+						 .version("2.0.0")
+						 .description("Complete E-Commerce REST API with User Management, Product Catalog, Shopping Cart, and Order Management with Payment Processing")
 						 .termsOfService("http://example.com/terms")
 						 .contact(new Contact()
 								 .name("Deepthi")

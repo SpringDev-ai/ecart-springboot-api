@@ -1,11 +1,10 @@
 package com.springboot.user_app.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,16 +13,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
-
+public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productId;
-	private String name;
-	private String description;
-	private double price;
-	private int stock;
-	private LocalDate expiryDate;
-	private String type;
-	private String imageUrl;
+	private Long cartItemId;
+	private int quantity;
+
+	@ManyToOne
+	private Cart cart;
+
+	@ManyToOne
+	private Product product;
 }

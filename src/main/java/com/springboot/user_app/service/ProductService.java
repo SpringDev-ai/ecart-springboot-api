@@ -51,7 +51,7 @@ public class ProductService {
 	public ResponseStructure<Product> getProductById(Long id){
 		Optional<Product> getPro=proDao.getProductById(id);
 		if(getPro.isPresent()) {
-			Product p =new Product();
+			Product p = getPro.get();
 			ResponseStructure<Product> structure = new ResponseStructure<Product>();
 				 structure.setData(p);
 				 structure.setTime(LocalDateTime.now());

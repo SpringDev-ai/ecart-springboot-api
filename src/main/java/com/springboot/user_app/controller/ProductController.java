@@ -11,61 +11,60 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.user_app.dto.UserResponseDto;
 import com.springboot.user_app.entity.Product;
-import com.springboot.user_app.entity.User;
 import com.springboot.user_app.response.ResponseStructure;
 import com.springboot.user_app.service.ProductService;
 
 @RestController
+@RequestMapping("/product")
 public class ProductController {
-	
+
 	@Autowired
 	ProductService proService;
-	
+
 	@PostMapping("/create")
-	public ResponseEntity<?> registerUser(@RequestBody Product p){
-		ResponseStructure<Product> structure=proService.createProduct(p);
-		return new ResponseEntity<>(structure,HttpStatus.CREATED);
-		
+	public ResponseEntity<?> createProduct(@RequestBody Product p) {
+		ResponseStructure<Product> structure = proService.createProduct(p);
+		return new ResponseEntity<>(structure, HttpStatus.CREATED);
 	}
+
 	@GetMapping("/getAllProduct")
-	public ResponseEntity<?> getAllProduct(){
-		ResponseStructure <List<Product>> structure=proService.getAllProduct();
-		return new ResponseEntity<>(structure,HttpStatus.OK);
-		
+	public ResponseEntity<?> getAllProduct() {
+		ResponseStructure<List<Product>> structure = proService.getAllProduct();
+		return new ResponseEntity<>(structure, HttpStatus.OK);
 	}
+
 	@GetMapping("/getProductById")
-		public ResponseEntity<?> getproductById(@RequestParam Long proId){
-			ResponseStructure<Product> structure=proService.getProductById(proId);
-			return new ResponseEntity<>(structure,HttpStatus.FOUND);
-					
+	public ResponseEntity<?> getproductById(@RequestParam Long proId) {
+		ResponseStructure<Product> structure = proService.getProductById(proId);
+		return new ResponseEntity<>(structure, HttpStatus.OK);
 	}
+
 	@GetMapping("/getProductByName")
-	public ResponseEntity<?> getProductByName(@RequestParam String name){
-		ResponseStructure<Product> structure=proService.getProductByName(name);
-		return new ResponseEntity<>(structure,HttpStatus.FOUND);
+	public ResponseEntity<?> getProductByName(@RequestParam String name) {
+		ResponseStructure<Product> structure = proService.getProductByName(name);
+		return new ResponseEntity<>(structure, HttpStatus.OK);
 	}
+
 	@GetMapping("/getProductByType")
-	public ResponseEntity<?> getProductByType(@RequestParam String type){
-		ResponseStructure<List<Product>> structure=proService.getProductByType(type);
-		return new ResponseEntity<>(structure,HttpStatus.FOUND);
+	public ResponseEntity<?> getProductByType(@RequestParam String type) {
+		ResponseStructure<List<Product>> structure = proService.getProductByType(type);
+		return new ResponseEntity<>(structure, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/updateProduct")
-	public ResponseEntity<?> updateProdcut(@RequestBody Product p) {
+	public ResponseEntity<?> updateProduct(@RequestBody Product p) {
 		ResponseStructure<Product> structure = proService.updateProduct(p);
 		return new ResponseEntity<>(structure, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/deleteProduct/{proId}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long proId) {
 		ResponseStructure<String> structure = proService.deleteProduct(proId);
 		return new ResponseEntity<>(structure, HttpStatus.OK);
-
 	}
-
 }
