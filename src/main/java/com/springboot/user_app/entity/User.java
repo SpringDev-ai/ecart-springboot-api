@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,10 +35,13 @@ public class User {
 	//@NotNull
 	//@NotEmpty
 	//@NotBlank
+	@Column(unique = true, nullable = false)
 	@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
 	private String email;
 	private String password;
 	private String address;
+	@Enumerated(EnumType.STRING)
+	private Role role = Role.USER;
 	
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore

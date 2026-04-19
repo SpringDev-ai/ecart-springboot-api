@@ -1,7 +1,6 @@
 package com.springboot.user_app.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.user_app.dto.UserLoginRequestDto;
 import com.springboot.user_app.dto.UserResponseDto;
 import com.springboot.user_app.entity.User;
-import com.springboot.user_app.repository.UserRepository;
 import com.springboot.user_app.response.ResponseStructure;
 import com.springboot.user_app.service.UserService;
 
@@ -51,7 +49,7 @@ public class UserController {
 	@PostMapping("/userLogin")
 	public ResponseEntity<?> userLogin(@RequestBody UserLoginRequestDto u){
 		
-		ResponseStructure<UserResponseDto> structure=userService.userLogin(u.getEmail(), u.getPassword());
+		ResponseStructure<?> structure=userService.userLogin(u.getEmail(), u.getPassword());
 		return new ResponseEntity<>(structure,HttpStatus.OK);
 	}
 	
